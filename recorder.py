@@ -16,6 +16,6 @@ def record(filenames):
             writer([[transcription]],'{}.csv'.format(st))
         except LookupError:                                 # speech is unintelligible
             print("Could not understand audio")
-    startAnalysis('{}.csv'.format(st))
+    startAnalysis('{}.csv'.format(st),filenames)
     
 

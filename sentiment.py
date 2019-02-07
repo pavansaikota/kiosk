@@ -19,7 +19,7 @@ def entityRecognizer(entity):
             temp['MOBILE']=item['Text']
     return temp
 
-def startAnalysis(filename):  
+def startAnalysis(filename,filenames):  
     client=boto3.client('comprehend')
     recordingsList=[]
     entityList=[]
@@ -50,6 +50,7 @@ def startAnalysis(filename):
         temp.append(entity['NAME'])
         temp.append(entity['ORG'])
         temp.append(entity['MOBILE'])
+        temp.append(filenames[idx])
         finalList.append(temp)
     writer(finalList,'{}.csv'.format(st))
     
