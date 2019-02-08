@@ -104,7 +104,7 @@ function saveRecording(){
     var n = d.getTime();
     ele.querySelector('a').setAttribute('download',n);
     document.querySelector('#recordingsList').children[0].children[1].click();
-    document.querySelector('#recordingsList').children[0].children[1].style.display='none';
+    //document.querySelector('#recordingsList').children[0].children[1].style.display='none';
     var data = $("#detailForm").serializeArray();
         
 

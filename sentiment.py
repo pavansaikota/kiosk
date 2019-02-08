@@ -17,10 +17,11 @@ def entityRecognizer(entity):
             temp['ORG']=item['Text']
         elif item['Type']=='OTHER':
             text=item['Text'].replace(" ","")
-            if len(text)==10:
-                temp['MOBILE']=text
-            elif len(text)==12:
+            if len(text)==12:
                 temp['ACCOUNT_NUMBER']=text
+            else:
+                 temp['MOBILE']=text
+                
     return temp
 
 def startAnalysis(filename,filenames):  
