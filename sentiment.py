@@ -9,14 +9,18 @@ import datetime
 
             
 def entityRecognizer(entity):
-    temp={'NAME':'null','ORG':'null','MOBILE':'null'}
+    temp={'NAME':'null','ACCOUNT_NUMBER':'null','ORG':'null','MOBILE':'null'}
     for item in entity:
         if item['Type']=='PERSON':
             temp['NAME']=item['Text']
         elif item['Type']=='ORGANIZATION':
             temp['ORG']=item['Text']
         elif item['Type']=='OTHER':
-            temp['MOBILE']=item['Text']
+            text=item['Text'].replace(" ","")
+            if len(text)==10:
+                temp['MOBILE']=text
+            elif len(text)==12:
+                temp['ACCOUNT_NUMBER']=text
     return temp
 
 def startAnalysis(filename,filenames):  
@@ -50,6 +54,7 @@ def startAnalysis(filename,filenames):
         temp.append(entity['NAME'])
         temp.append(entity['ORG'])
         temp.append(entity['MOBILE'])
+        temp.append(entity['ACCOUNT_NUMBER'])
         temp.append(filenames[idx])
         finalList.append(temp)
     writer(finalList,'{}.csv'.format(st))
